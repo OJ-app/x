@@ -9,10 +9,10 @@
     icon は正方形画像のURL推奨（512×512pxがおすすめ）
   ========================================================== -->
   <title>マイホーム アプリ</title>
-  <link id="favicon" rel="icon" href="../images/myapp-icon-512.png">
+  <link id="favicon" rel="icon" href="./images/IMG_3462.png">
   
   <meta name="ojapp:title" content="マイアプリ">
-  <meta name="ojapp:icon" content="../images/myapp-icon-512.png">
+  <meta name="ojapp:icon" content="./images/IMG_3462.png">
   <meta name="theme-color" content="#f4f1ff">
 
   <!-- OJapp Free：この1行で、このページをホーム画面アプリにします -->
@@ -25,7 +25,7 @@
     ========================================================== */
     :root {
       --bg-start: #f9f7ff;
-      --bg-end: #edf4ff;
+      --bg-end: #800000;
       --text: #242333;
       --muted: #777489;
       --accent: #7658e8;
@@ -244,14 +244,16 @@
       <!-- =====================================================
         【編集 3/4】画面上部の文章
       ====================================================== -->
-      <span class="eyebrow">MY APP</span>
-      <h1>マイホーム アプリ</h1>
-      <p class="lead">よく使う場所へ、ここからすぐに。</p>
+      <span class="eyebrow">AKANE's APP</span>
+      <h1>あかねちゃん アプリ</h1>
+      <p class="lead">おじゃちさんと色々ゲーム配信やってます！<br>
+主に賑やかし・ボケ担当？ https://twitch.tv/ojyach?<br>
+ゲーム、石、グルメ関係多め！</p>
     </header>
 
     <section class="panel" aria-labelledby="apps-title">
       <div class="panel-head">
-        <h2 class="panel-title" id="apps-title">マイアプリ</h2>
+        <h2 class="panel-title" id="apps-title">あかねといえばコレ！</h2>
         <span class="app-count" id="app-count"></span>
       </div>
       <div class="app-grid" id="app-grid"></div>
@@ -282,52 +284,28 @@
     ========================================================== */
     const MY_APPS = [
       {
-        name: "Webサイト",
-        url: "https://example.com/",
+        name: "X",
+        url: "https://x.com/nino_kuro_m",
         icon: "🌐",
         color: "#e9f2ff"
       },
       {
-        name: "ショップ",
-        url: "https://example.com/shop/",
-        icon: "🛍️",
+        name: "インスタ",
+        url: "https://www.instagram.com/gem.beetle",
+        icon: "",
         color: "#fff0f4"
       },
       {
-        name: "ブログ",
-        url: "https://example.com/blog/",
-        icon: "✍️",
+        name: "BASE Shop",
+        url: "https://gembeetle.base.shop/",
+        icon: "",
         color: "#fff5dc"
       },
       {
-        name: "プロフィール",
-        url: "https://example.com/profile/",
-        icon: "👤",
-        color: "#eeeaff"
-      },
-      {
-        name: "動画",
-        url: "https://www.youtube.com/",
-        icon: "",
-        color: "#ffe8e8"
-      },
-      {
-        name: "写真",
-        url: "https://www.instagram.com/",
-        icon: "",
-        color: "#f5e9ff"
-      },
-      {
         name: "お問い合わせ",
-        url: "mailto:hello@example.com",
+        url: "mailto:maki19820702@gmail.com",
         icon: "✉️",
         color: "#e8f8f1"
-      },
-      {
-        name: "地図",
-        url: "https://maps.google.com/",
-        icon: "📍",
-        color: "#e9f8ed"
       }
     ];
 
