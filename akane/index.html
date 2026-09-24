@@ -235,6 +235,18 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
+    @media (display-mode: standalone) {
+　    .ios-blur-fix {
+        position: fixed;
+        inset: 0 0 auto;
+        height: 11px;
+        z-index: 2147483647;
+        pointer-events: none;
+        background-color: var(--bg-end);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+    }
   </style>
 </head>
 
@@ -273,6 +285,79 @@
   </main>
 
   <script>
+    (() => {
+      const standalone =
+        matchMedia("(display-mode: standalone)").matches ||
+        navigator.standalone === true;
+
+      if (!standalone) return;
+
+      const strip = document.querySelector(".ios-blur-fix");
+      if (!strip) return;
+
+      const rootStyle = getComputedStyle(document.documentElement);
+      const start = hexToRgb(rootStyle.getPropertyValue("--bg-start").trim());
+      const end = hexToRgb(rootStyle.getPropertyValue("--bg-end").trim());
+
+      let ticking = false;
+
+      function hexToRgb(hex) {
+       const value = hex.replace("#", "");
+       const full = value.length === 3
+         ? value.split("").map(char => char + char).join("")
+         : value;
+
+       return {
+         r: parseInt(full.slice(0, 2), 16),
+         g: parseInt(full.slice(2, 4), 16),
+         b: parseInt(full.slice(4, 6), 16)
+       };
+     }
+
+     function mix(a, b, amount) {
+       const t = Math.max(0, Math.min(1, amount));
+
+       return `rgb(
+         ${Math.round(a.r + (b.r - a.r) * t)},
+         ${Math.round(a.g + (b.g - a.g) * t)},
+         ${Math.round(a.b + (b.b - a.b) * t)}
+       )`;
+     }
+
+     function updateStatusColor() {
+       const pageHeight = document.documentElement.scrollHeight;
+       const sampleY = window.scrollY + 12;
+       const startEnd = 150;
+       const middleEnd = pageHeight * 0.38;
+
+       let color;
+
+       if (sampleY <= startEnd) {
+         color = mix(end, start, sampleY / startEnd);
+       } else if (sampleY <= middleEnd) {
+         color = mix(start, start, 0);
+       } else {
+         color = mix(
+           start,
+           end,
+           (sampleY - middleEnd) / (pageHeight - middleEnd)
+         );
+      }
+
+       strip.style.backgroundColor = color;
+       ticking = false;
+     }
+
+     function requestUpdate() {
+       if (ticking) return;
+       ticking = true;
+       requestAnimationFrame(updateStatusColor);
+     }
+
+     updateStatusColor();
+     addEventListener("scroll", requestUpdate, { passive: true });
+     addEventListener("resize", requestUpdate);
+   })();
     /* =========================================================
       【編集 4/4】表示するアプリ
 
