@@ -235,23 +235,6 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
-
-@media (display-mode: standalone) {
-  @supports (-webkit-touch-callout: none) {
-    .ios-blur-fix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 11px;
-      z-index: 2147483647;
-      pointer-events: none;
-      background-color: #800000;
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-  }
-}
   </style>
 </head>
 
