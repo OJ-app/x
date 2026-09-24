@@ -235,10 +235,26 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
+
+    .ios-blur-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 11px;
+  z-index: 2147483647;
+  pointer-events: none;
+
+  background-color: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
   </style>
 </head>
 
 <body>
+  <div class="ios-blur-fix" aria-hidden="true"></div>
+
   <main class="app-shell">
     <header class="hero">
       <!-- =====================================================
