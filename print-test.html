@@ -60,7 +60,7 @@
     statusEl.textContent = 'ログ: window.print() を呼び出しました...';
     
     try {
-      window.print();
+      iframe.contentwindow.print();
       statusEl.textContent = 'ログ: window.print() の実行が完了しました（応答完了）';
     } catch (e) {
       statusEl.textContent = 'エラー発生: ' + e.message;
