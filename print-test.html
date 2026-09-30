@@ -55,17 +55,31 @@
 </div>
 
 <script>
-  function testPrint() {
-    const statusEl = document.getElementById('status');
-    statusEl.textContent = 'ログ: window.print() を呼び出しました...';
-    
-    try {
-      iframe.contentwindow.print();
-      statusEl.textContent = 'ログ: window.print() の実行が完了しました（応答完了）';
-    } catch (e) {
-      statusEl.textContent = 'エラー発生: ' + e.message;
-    }
+window.addEventListener("beforeprint", () => {
+  console.log("beforeprint");
+  document.getElementById("status").textContent =
+    "beforeprint 発火";
+});
+
+window.addEventListener("afterprint", () => {
+  console.log("afterprint");
+  document.getElementById("status").textContent =
+    "afterprint 発火";
+});
+
+function testPrint() {
+  const statusEl = document.getElementById("status");
+
+  statusEl.textContent = "print() 呼び出し";
+
+  try {
+    window.print();
+
+    statusEl.textContent += " → 戻ってきた";
+  } catch (e) {
+    statusEl.textContent = e.message;
   }
+}
 </script>
 
 </body>
