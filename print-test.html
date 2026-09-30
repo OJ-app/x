@@ -55,6 +55,14 @@
 </div>
 
 <script>
+const statusEl = document.getElementById("status");
+
+window.matchMedia("print").addEventListener("change", e => {
+  statusEl.textContent += e.matches
+    ? " → print=true"
+    : " → print=false";
+});
+
 function testPrint() {
   const statusEl = document.getElementById('status');
 
