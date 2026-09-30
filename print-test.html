@@ -56,15 +56,11 @@
 
 <script>
 window.addEventListener("beforeprint", () => {
-  console.log("beforeprint");
-  document.getElementById("status").textContent =
-    "beforeprint 発火";
+  document.getElementById("status").textContent = "beforeprint";
 });
 
 window.addEventListener("afterprint", () => {
-  console.log("afterprint");
-  document.getElementById("status").textContent =
-    "afterprint 発火";
+  document.getElementById("status").textContent = "afterprint";
 });
 
 function testPrint() {
