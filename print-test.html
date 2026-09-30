@@ -55,27 +55,31 @@
 </div>
 
 <script>
-window.addEventListener("beforeprint", () => {
-  document.getElementById("status").textContent = "beforeprint";
-});
-
-window.addEventListener("afterprint", () => {
-  document.getElementById("status").textContent = "afterprint";
-});
-
 function testPrint() {
-  const statusEl = document.getElementById("status");
+  const statusEl = document.getElementById('status');
 
-  statusEl.textContent = "print() 呼び出し";
+  // まず現在の表示モードを表示
+  statusEl.textContent =
+    window.matchMedia('(display-mode: standalone)').matches
+      ? 'standalone'
+      : 'browser';
 
   try {
     window.print();
 
-    statusEl.textContent += " → 戻ってきた";
+    statusEl.textContent += ' → print() 戻ってきた';
   } catch (e) {
-    statusEl.textContent = e.message;
+    statusEl.textContent = 'エラー: ' + e.message;
   }
 }
+
+window.addEventListener("beforeprint", () => {
+  document.getElementById("status").textContent += " → beforeprint";
+});
+
+window.addEventListener("afterprint", () => {
+  document.getElementById("status").textContent += " → afterprint";
+});
 </script>
 
 </body>
